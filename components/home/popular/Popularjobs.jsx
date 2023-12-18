@@ -14,8 +14,6 @@ const Popularjobs = () => {
     num_pages: 1,
   })
 
-  console.log(data)
-
 
 
   const handleCardPress = (item) => {
@@ -39,14 +37,13 @@ const Popularjobs = () => {
         ) : (
           <FlatList
             data={data.data}
+            keyExtractor={(item) => item.job_id}
             renderItem={(item) =>
               <PopularJobCard
-                item={item}
-                selectedJob={selectedJob}
-                handleCardPress={handleCardPress}
+                item={item.item}
+
               />
             }
-            keyExtractor={(item) => item.job_id}
             contentContainerStyle={{ columnGap: SIZES.medium }}
             horizontal
           />

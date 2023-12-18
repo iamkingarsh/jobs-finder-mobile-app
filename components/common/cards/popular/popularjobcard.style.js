@@ -4,7 +4,7 @@ import { COLORS, FONT, SHADOWS, SIZES } from "../../../../constants";
 
 const styles = StyleSheet.create({
   container: (selectedJob, item) => ({
-    width: 250,
+    width: 300,
     padding: SIZES.xLarge,
     backgroundColor: selectedJob === item.job_id ? COLORS.primary : "#FFF",
     borderRadius: SIZES.medium,
@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
     height: "70%",
   },
   companyName: {
-    fontSize: SIZES.medium,
+    fontSize: SIZES.medium - 2,
     fontFamily: FONT.regular,
     color: "#B3AEC6",
     marginTop: SIZES.small / 1.5,
@@ -35,8 +35,13 @@ const styles = StyleSheet.create({
   },
   jobName: (selectedJob, item) => ({
     fontSize: SIZES.large,
-    fontFamily: FONT.medium,
+    fontFamily: FONT.bold,
     color: selectedJob === item.job_id ? COLORS.white : COLORS.primary,
+  }),
+  jobType: (selectedJob, item) => ({
+    fontSize: SIZES.small,
+    fontFamily: FONT.medium,
+    color: selectedJob === item.job_id ? COLORS.white : COLORS.gray,
   }),
   infoWrapper: {
     flexDirection: "row",
