@@ -48,8 +48,8 @@ const index = () => {
           style={{flex:1 }}
         >
           <Welcome />
-          <Nearbyjobs />
           <Popularjobs />
+          <Nearbyjobs />
         </SafeAreaView>
         
       
