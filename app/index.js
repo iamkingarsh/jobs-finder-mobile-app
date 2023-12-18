@@ -7,7 +7,7 @@ const index = () => {
 
     useEffect(() => {
         navigation.setOptions({
-            headerTitle: 'React Native Jobs',
+            headerTitle: 'JobsFinder',
         })
     }, [])
   return (
