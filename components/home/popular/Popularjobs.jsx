@@ -7,19 +7,16 @@ import { useFetch } from '../../../hooks/useFetch'
 import styles from './popularjobs.style'
 
 const Popularjobs = () => {
-  const [selectedJob, setSelectedJob] = React.useState(null);
+
 
   const { loading, data, error } = useFetch('search', {
-    query: 'react developer',
+    query: 'popular jobs ',
     num_pages: 1,
   })
 
 
 
-  const handleCardPress = (item) => {
-    router.push(`/job-details/${item.job_id}`);
-    setSelectedJob(item.job_id);
-  };
+
 
   return (
     <View style={styles.container}>

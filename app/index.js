@@ -4,17 +4,15 @@ import { useNavigation } from 'expo-router'
 import { Welcome, Nearbyjobs, Popularjobs, ScreenHeaderBtn } from '../components/'
 import { useRouter, Stack } from 'expo-router'
 import { COLORS, FONT, icons, images, SIZES } from '../constants'
-import { StatusBar } from 'expo-status-bar'
 
 
-const JobTypes = ['Full Time', 'Part Time', 'Remote']
 const index = () => {
-  const navigation = useNavigation()
-  const router = useRouter()
-  const [activeJobType, setActiveJobType] = useState('Full Time')
+
 
   return (
-    <ScrollView style={{ flex: 1, backgroundColor: COLORS.lightWhite, padding: SIZES.medium, }} >
+    <SafeAreaView
+      
+    style={{ flex: 1, backgroundColor: COLORS.lightWhite,  }} >
        <Stack.Screen
         options={{
           headerShown: true,
@@ -29,7 +27,7 @@ const index = () => {
             fontFamily: FONT.bold,
           },
           headerLargeTitle: true,
-          headerBlurEffect: 'light',
+          headerBlurEffect: 'dark',
           headerTransparent: true,
           headerLargeTitleShadowVisible: false,
           headerLeft: () => (
@@ -44,16 +42,16 @@ const index = () => {
       />
       
 
-        <SafeAreaView
-          style={{flex:1 }}
+        <ScrollView
+          style={{flex:1, padding: SIZES.medium }}
         >
           <Welcome />
           <Popularjobs />
           <Nearbyjobs />
-        </SafeAreaView>
+        </ScrollView>
         
       
-    </ScrollView>
+    </SafeAreaView>
   )
 }
 

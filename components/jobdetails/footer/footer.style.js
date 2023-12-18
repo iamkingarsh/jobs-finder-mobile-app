@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     padding: SIZES.small,
-    backgroundColor: "#FFF",
+    backgroundColor: 'transparent',
     justifyContent: "space-between",
     alignItems: "center",
     flexDirection: "row",
@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
   likeBtnImage: {
     width: "40%",
     height: "40%",
-    tintColor: "#F37453",
+    tintColor: COLORS.tertiary,
   },
   applyBtn: {
     flex: 1,

@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
     height: "70%",
   },
   companyName: {
-    fontSize: SIZES.medium - 2,
+    fontSize: SIZES.medium ,
     fontFamily: FONT.regular,
     color: "#B3AEC6",
     marginTop: SIZES.small / 1.5,
