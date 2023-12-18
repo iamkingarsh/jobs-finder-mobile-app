@@ -21,7 +21,13 @@ const JobDetails = () => {
             setRefreshing(false);
         }, 2000);
     }, []);
-    const {data, loading, error} = useFetch('job-details', {job_id: id})
+
+    const { data, loading, error, refetch } = useFetch("job-details", {
+        job_id: id,
+      });
+
+
+    console.log(data.data[0].employer_name)
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.lightWhite,  }} >
     <Stack.Screen
@@ -44,44 +50,40 @@ const JobDetails = () => {
          
         }}
         />
-        <ScrollView
-         showsVerticalScrollIndicator={false}
-         refreshControl={
-            <RefreshControl
-                refreshing={refreshing}
-                onRefresh={onRefresh}
-            />
-         }
+         <>
+        <ScrollView showsVerticalScrollIndicator={false}
+          refreshControl={
+            <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
         >
-          {  loading ? (
-            <ActivityIndicator size="large" color={COLORS.tertiary} />
+          {loading ? (
+            <ActivityIndicator size='large' color={COLORS.primary} />
           ) : error ? (
-            <Text>Something went wrong...</Text>
-            ) : data?.length === 0 ? (
-            <Text>No data found</Text>
-            ) :
-            (
-            <View style={{padding: SIZES.medium, paddingBottom:100}}>
-
-            <Company
-                companyLogo={data.data.data[0].employer_logo}
+            <Text>Something went wrong</Text>
+          ) : data.length === 0 ? (
+            <Text>No data available</Text>
+          ) : (
+            <View style={{ padding: SIZES.medium, paddingBottom: 100 }}>
+              <Company
+                companyLogo={data.data[0].employer_logo}
                 jobTitle={data.data[0].job_title}
                 companyName={data.data[0].employer_name}
                 location={data.data[0].job_country}
+                jobType = {data.data[0].job_employment_type}
+              />
 
-            />
-            <JobTabs
-            />
-            <JobAbout />
-            <Specifics />
-       
+              <JobTabs
+                // tabs={tabs}
+                // activeTab={activeTab}
+                // setActiveTab={setActiveTab}
+              />
 
-            {/* <JobFooter /> */}
-            
-          
-            </View>)
-            }
+              {/* {displayTabContent()} */}
+            </View>
+          )}
         </ScrollView>
+
+        {/* <JobFooter url={data.data[0]?.job_google_link ?? 'https://careers.google.com/jobs/results/'} /> */}
+      </>
     </SafeAreaView>
   )
 }
