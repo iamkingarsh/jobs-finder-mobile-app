@@ -7,6 +7,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     bottom: 0,
     left: 0,
+    
     right: 0,
     padding: SIZES.small,
     backgroundColor: 'transparent',

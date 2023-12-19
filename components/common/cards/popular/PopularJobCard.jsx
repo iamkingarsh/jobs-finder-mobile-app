@@ -5,7 +5,7 @@ import { router, useRouter } from 'expo-router'
 
 
 import styles from './popularjobcard.style'
-import { checkImageURL } from '../../../../utils'
+
 
 
 const PopularJobCard = (item) => {
