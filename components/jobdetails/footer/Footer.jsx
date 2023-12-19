@@ -29,6 +29,7 @@ const Footer = (url) => {
         visible={visible}
         animationType='slide'
         collapsable={true}
+        onRequestClose={() => setVisible(false)}
         presentationStyle='pageSheet'
       >
         <WebView
