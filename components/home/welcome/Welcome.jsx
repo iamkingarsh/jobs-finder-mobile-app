@@ -31,7 +31,9 @@ const Welcome = () => {
             style={styles.searchInput}
           />
         </View>
-        <TouchableOpacity style={styles.searchBtn}>
+        <TouchableOpacity
+          onPress={() => router.push(`/search/${searchText}`)}
+          style={styles.searchBtn}>
           <Image
             source={icons.search}
             resizeMode="contain"

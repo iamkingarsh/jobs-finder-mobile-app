@@ -26,7 +26,7 @@ export const useFetch =  (endpoint, query) => {
             setLoading(false);
         } catch (error) {
             setError(error);
-            alert('There was an error fetching the data.');
+            // alert('There was an error fetching the data.');
             setLoading(false);
         } finally {
             setLoading(false);

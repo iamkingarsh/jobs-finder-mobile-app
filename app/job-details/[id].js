@@ -40,7 +40,7 @@ const JobDetails = () => {
           case 'Responsibilities':
             return <Specifics title='Responsibilities' specifics={data?.data[0]?.job_highlights?.Responsibilities} />
           case 'Benefits':
-            return <Specifics specifics={data?.data[0]?.job_benefits} />
+            return <Specifics title='Benefits' specifics={data?.data[0]?.job_highlights?.Benefits} />
           default:
             return <JobAbout about={data?.data[0]?.job_description} />
         }
