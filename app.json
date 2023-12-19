@@ -7,8 +7,8 @@
     "plugins": [
       "expo-router"
     ],
-    "name": "jobs-search-app",
-    "slug": "jobs-search-app",
+    "name": "job-finder-app",
+    "slug": "jobs-finder-app",
     "extra": {
       "router": {
         "origin": false
