@@ -1,8 +1,11 @@
 import { View, Text, SafeAreaView, ScrollView, FlatList, ActivityIndicator, TouchableOpacity, Image } from 'react-native'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Stack, useGlobalSearchParams, useRouter } from 'expo-router'
 import { COLORS, FONT, SIZES, icons } from '../../constants'
 import styles  from '../../styles/search'
+import useFetch from '../../hooks/useFetch'
+import { NearbyJobCard } from '../../components'
+import axios from 'axios'
 
 const search = () => {
     const params = useGlobalSearchParams()
@@ -14,11 +17,46 @@ const search = () => {
     const [searchError, setSearchError] = useState(null);
     const [page, setPage] = useState(1);
 
+    const handleSearch = async () => {
+        setSearchLoader(true);
+        setSearchResult([])
+
+        try {
+            const options = {
+                method: "GET",
+                url: `https://jsearch.p.rapidapi.com/search`,
+                headers: {
+                    "X-RapidAPI-Key": 'e73c606227mshe7f3cf553b5aa0fp10fbb4jsnd88034649659',
+                    "X-RapidAPI-Host": "jsearch.p.rapidapi.com",
+                },
+                params: {
+                    query: params.id,
+                    page: page.toString(),
+                },
+            };
+
+            const response = await axios.request(options);
+            setSearchResult(response.data.data);
+        } catch (error) {
+            setSearchError(error);
+            console.log(error);
+        } finally {
+            setSearchLoader(false);
+        }
+    };
+
+    useEffect(() => {
+        handleSearch()
+    }, [])
+      
+
     const handlePagination = (direction) => {
         if (direction === 'left' && page > 1){
             setPage(page - 1);
+            handleSearch()
         } else if (direction === 'right'){
             setPage(page + 1);
+            handleSearch()
         }
     }
     
@@ -36,11 +74,11 @@ const search = () => {
                     headerTintColor: COLORS.white,
                     headerTitleStyle: {
                        
-                        fontFamily: FONT.medium,
+                        fontFamily: FONT.bold,
                     },
                         headerBackTitle: 'Back',
                         headerLargeTitle: true,
-                        headerLargeTitleStyle: [styles.searchTitle, {color: COLORS.white}],
+                        headerLargeTitleStyle: [styles.searchTitle, {color: COLORS.white, fontFamily: FONT.bold}],
                     headerBlurEffect: 'dark',
                     headerTransparent: true,
                     headerLargeTitleShadowVisible: false,
@@ -48,24 +86,19 @@ const search = () => {
                 }
             }
         />
-        <ScrollView >
 
             <FlatList 
-            data={[1,2,3,4,5,6,7,8,9,10]}
+            data={searchResult}
             renderItem={({item}) => (
-                <View style={{backgroundColor: COLORS.lightGray, marginVertical: SIZES.small, padding: SIZES.medium, borderRadius: SIZES.small}}>
-                    <Text style={{fontFamily: FONT.bold, fontSize: SIZES.h3}}>Job Title</Text>
-                    <Text style={{fontFamily: FONT.regular, fontSize: SIZES.body4}}>Company Name</Text>
-                    <Text style={{fontFamily: FONT.regular, fontSize: SIZES.body4}}>Location</Text>
-                </View>
+                <NearbyJobCard job={item}  />
             )}
-            keyExtractor={item => item}
+            keyExtractor={item => item.job_id}
             contentContainerStyle={{padding: SIZES.medium, rowGap: SIZES.medium}}
             ListHeaderComponent={() => (
                 <>
                 <View style={styles}>
                     {/* <Text style={styles.searchTitle}>Search Results for {query}</Text> */}
-                    <Text style={styles.noOfSearchedJobs}>10 opportunities jobs found</Text>
+                    <Text style={styles.noOfSearchedJobs}>{searchResult?.length} opportunities jobs found</Text>
                 </View>
                 <View style={styles.loaderContainer}>
                             {searchLoader ? (
@@ -106,7 +139,7 @@ const search = () => {
                     </View>
                 )}
             />
-        </ScrollView>
+
     </SafeAreaView>
   )
 }

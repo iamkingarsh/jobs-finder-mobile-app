@@ -8,6 +8,22 @@
       "expo-router"
     ],
     "name": "jobs-search-app",
-    "slug": "jobs-search-app"
+    "slug": "jobs-search-app",
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "97da59e1-6249-4c7e-bb0b-9e8a4414451e"
+      }
+    },
+    "runtimeVersion": {
+      "policy": "sdkVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/97da59e1-6249-4c7e-bb0b-9e8a4414451e"
+    },
+    "android": {},
+    "ios": {}
   }
 }

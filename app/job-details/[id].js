@@ -5,6 +5,7 @@ import { COLORS, FONT, SIZES } from '../../constants'
 
 import { Company, JobAbout, JobFooter, JobTabs, Specifics } from '../../components'
 import useFetch from '../../hooks/useFetch'
+import styles from '../../styles/search'
 
 const JobDetails = () => {
     const params = useGlobalSearchParams()
@@ -63,6 +64,7 @@ const JobDetails = () => {
             fontFamily: FONT.bold,
           },
           headerLargeTitle: true,
+          headerLargeTitleStyle: [styles.searchTitle, {color: COLORS.white, fontFamily: FONT.bold}],
           // headerBackTitleVisible: false,
           headerBackTitle: 'Back',
           headerBlurEffect: 'light',
