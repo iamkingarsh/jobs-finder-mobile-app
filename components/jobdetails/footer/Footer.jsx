@@ -1,11 +1,16 @@
-import React from 'react'
-import { View, Text, Image, TouchableOpacity, Linking } from 'react-native'
-
+import React, { useState } from 'react'
+import { View, Text, Image, TouchableOpacity, Linking, Modal } from 'react-native'
+import InAppBrowser, { InAppBrowserOptions } from "react-native-inappbrowser-reborn";
 import styles from './footer.style'
 import { COLORS, icons } from '../../../constants'
+import { WebView } from 'react-native-webview'
+
+
 
 const Footer = (url) => {
-  console.log(url.url)
+  const [visible, setVisible] = useState(false)
+  const openLinkInWebView = () => setVisible(true)
+
   return (
     <View style={styles.container}>
       <TouchableOpacity
@@ -16,10 +21,20 @@ const Footer = (url) => {
           style={styles.likeBtnImage} />
       </TouchableOpacity>
       <TouchableOpacity
-        onPress={() => Linking.openURL(url.url)}
+        onPress={() => openLinkInWebView()}
         style={styles.applyBtn}>
         <Text style={styles.applyBtnText}>Apply</Text>
       </TouchableOpacity>
+      <Modal
+        visible={visible}
+        animationType='slide'
+        collapsable={true}
+        presentationStyle='pageSheet'
+      >
+        <WebView
+          source={{ uri: url.url }}
+        />
+      </Modal>
     </View>
   )
 }

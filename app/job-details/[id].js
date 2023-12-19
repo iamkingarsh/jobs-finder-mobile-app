@@ -63,6 +63,8 @@ const JobDetails = () => {
             fontFamily: FONT.bold,
           },
           headerLargeTitle: true,
+          // headerBackTitleVisible: false,
+          headerBackTitle: 'Back',
           headerBlurEffect: 'light',
           headerTransparent: true,
           headerLargeTitleShadowVisible: false,

@@ -2,6 +2,8 @@ import { StyleSheet } from "react-native";
 
 import { COLORS, FONT, SIZES } from "../../../constants";
 
+
+
 const styles = StyleSheet.create({
   container: {
     position: "absolute",
@@ -10,7 +12,7 @@ const styles = StyleSheet.create({
     
     right: 0,
     padding: SIZES.small,
-    backgroundColor: 'transparent',
+    backgroundColor: COLORS.lightWhite,
     justifyContent: "space-between",
     alignItems: "center",
     flexDirection: "row",
